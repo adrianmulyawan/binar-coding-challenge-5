@@ -1,0 +1,74 @@
+<section class="section-when-small position-fixed" id="on-small">
+  <div class="container-fluid position-fixed top-50 start-50 translate-middle container-error-game" id="container-error">
+    <div class="row align-items-center">
+      <div class="col-12 text-center text-white">
+        <h1 style="color: white;">
+          This Game Only Support <br>
+          in Browser > 768px
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Container -->
+<div class="container container-game">
+  <!-- Pilihan Computer -->
+  <div class="row row-computer justify-content-center">
+    <div class="col-sm-8 col-md-12 col-lg-8">
+      <div class="card card-area-computer">
+        <div class="row area-computer justify-content-center mb-5">
+          <img src="images/gunting.png" class="img-computer img-fluid" alt="img-computer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pilihan User -->
+  <div class="row row-user justify-content-center">
+    <div class="col-sm-8 col-md-12 col-lg-8">
+      <div class="card card-area-user py-5">
+        <div class="row area-user justify-content-between ms-2 me-2">
+          <img src="images/batu.png" class="image-user batu pil-active" alt="batu">
+          <img src="images/kertas.png" class="image-user kertas pil-active" alt="kertas">
+          <img src="images/gunting.png" class="image-user gunting pil-active" alt="gunting">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Result -->
+  <div class="row row-scoring justify-content-center">
+    <div class="col-sm-6 col-md-6 col-lg-4">
+      <div class="card card-area-scoring py-2">
+        <div class="row area-scoring justify-content-center">
+          <h1 class="text-center text-vs">VS</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Score and Reset -->
+<div class="container container-score-reset mt-5">
+  <div class="row row-score-reset justify-content-center">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+      <table class="table table-responsive table-borderless">
+        <thead>
+          <tr>
+            <th scope="col" class="player-1-name text-center">Player 1</th>
+            <th scope="col" class="reset text-center">RESET</th>
+            <th scope="col" class="computer-name text-center">Computer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="score-player-1 text-center">0</td>
+            <td class="reset-img text-center">
+              <img src="images/refresh.png" class="reset-img-button" alt="reset-img" width="70px">
+            </td>
+            <td class="score-computer text-center">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

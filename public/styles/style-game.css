@@ -1,0 +1,110 @@
+body {
+  height: 100vh;
+  background-color: #C58940;
+}
+
+.navbar-game a.navbar-brand {
+  font-size: 36px;
+  color: #F9B23D;
+  font-weight: bold;
+}
+
+.navbar-game a.navbar-brand i.bi-chevron-left {
+  color: #000;
+}
+
+div.container-game {
+  margin-top: 40px;
+}
+
+.card-area-computer {
+  height: 300px;
+  background-color: #FAEAB1;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 3px solid #fff;
+  border-bottom: 1px solid #fff;
+  padding-top: 80px;
+}
+
+.container-game .area-computer img.img-computer {
+  max-width: 150px;
+}
+
+.card-area-scoring {
+  background-color: #FAF8F1;
+  border-radius: 30px;
+  border: 3px solid #fff;
+  margin-top: -280px;
+}
+
+h1.text-vs {
+  font-size: 30px;
+  font-weight: bold;
+  color: yellow;
+}
+
+.card-area-user {
+  height: 250px;
+  background-color: #E5BA73;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 3px solid #fff;
+  border-top: 1px solid #fff;
+  margin-top: 0px;
+  padding-bottom: 50px;
+}
+
+.layer-color {
+  background-color: #FAEAB1;
+}
+
+img.pil-active:hover {
+  background-color: yellow;
+  cursor: pointer;
+}
+
+.container-game .area-user img {
+  max-width: 120px;
+}
+
+.container-score-reset tr th {
+  color: #fff;
+  font-size: 20px;
+}
+
+.container-score-reset tr td {
+  color: #fff;
+  font-size: 56px;
+}
+
+img.reset-img-button {
+  cursor: pointer;
+}
+
+.section-when-small {
+  margin-top: 0px auto;
+  width: 100%;
+  z-index: 1;
+}
+
+#container-error {
+  background-color: black;
+  display: block;
+  padding-top: 500px;
+  padding-bottom: 500px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+  #on-small {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  #on-small {
+    display: none;
+  }
+}
