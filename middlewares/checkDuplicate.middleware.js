@@ -5,7 +5,7 @@ const checkUsername = async (req, res, next) => {
     username: req.body.username
   });
 
-  if (!username) {
+  if (username) {
     return res.status(400).json({
       status: 'Failed',
       statusCode: 400,
