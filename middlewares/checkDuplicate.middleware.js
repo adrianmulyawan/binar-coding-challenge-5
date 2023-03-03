@@ -1,4 +1,5 @@
-const User = require('../models').User;
+const models = require('../models');
+const User = models.User;
 
 const checkUsername = async (req, res, next) => {
   const username = await User.findOne({
@@ -13,7 +14,7 @@ const checkUsername = async (req, res, next) => {
     });
   }
 
-  return next();
+  next();
 };
 
 module.exports = {
