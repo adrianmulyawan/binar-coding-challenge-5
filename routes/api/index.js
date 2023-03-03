@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 // > Controller 
 const { AuthController } = require('../../controllers/api/auth.controller');
+const { ProfileController } = require('../../controllers/api/profile.controller');
 
 // > Middleware 
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
@@ -28,5 +29,10 @@ router.post('/api/v1/login', AuthController.loginWithJWT);
 router.get('/api/v1/user-login', [
   CheckTokenAuth.isAuthenticated
 ], AuthController.whoAmI);
+
+// > Route: Check Profile User dan Edit Profile User
+router.get('/api/v1/user/profile', [
+  CheckTokenAuth.isAuthenticated
+], ProfileController.showProfile);
 
 module.exports = router;
