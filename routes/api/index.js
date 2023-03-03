@@ -5,6 +5,7 @@ const { AuthController } = require('../../controllers/api/auth.controller');
 
 // > Middleware 
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
+const CheckTokenAuth = require('../../middlewares/jwtRestrict.middleware');
 
 // ========================================================================
 
@@ -22,5 +23,10 @@ router.post('/api/v1/register', [
   CheckDuplicate.checkUsername
 ], AuthController.userRegister);
 router.post('/api/v1/login', AuthController.loginWithJWT);
+
+// > Route: Check User Login
+router.get('/api/v1/user-login', [
+  CheckTokenAuth.isAuthenticated
+], AuthController.whoAmI);
 
 module.exports = router;
