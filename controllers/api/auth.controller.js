@@ -120,6 +120,20 @@ class AuthController {
       });
     }
   };
+
+  static whoAmI = (req, res) => {
+    const {id, username, role} = req.user;
+    return res.status(200).json({
+      status: 'Success',
+      statusCode: 200,
+      message: `Hello ${username}`,
+      user: {
+        id,
+        username,
+        role
+      }
+    });
+  };
 };
 
 module.exports = {
