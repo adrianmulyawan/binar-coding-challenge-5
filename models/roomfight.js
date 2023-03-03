@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      RoomFight.belongsTo(models.Room, {
+        foreignKey: 'room_id',
+        as: 'room'
+      });
     }
   }
   RoomFight.init({
