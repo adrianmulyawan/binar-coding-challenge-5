@@ -18,4 +18,6 @@ router.post('/api/v1/register', [
   CheckDuplicate.checkUsername
 ], AuthController.userRegister);
 
+router.post('/api/v1/login', AuthController.loginWithJWT);
+
 module.exports = router;
