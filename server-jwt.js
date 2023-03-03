@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const passport = require('./lib/passport-jwt');
 const router = require('./routes/api');
 
 const app = express();
@@ -11,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+
+// > Use passport jwt to http server
+app.use(passport.initialize());
 
 app.use(router);
 
