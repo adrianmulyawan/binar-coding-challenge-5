@@ -34,5 +34,8 @@ router.get('/api/v1/user-login', [
 router.get('/api/v1/user/profile', [
   CheckTokenAuth.isAuthenticated
 ], ProfileController.showProfile);
+router.put('/api/v1/user/profile-edit', [
+  CheckTokenAuth.isAuthenticated
+], ProfileController.editProfile);
 
 module.exports = router;
