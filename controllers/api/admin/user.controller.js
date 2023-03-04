@@ -8,7 +8,7 @@ class UserController {
         order: [
           ['createdAt', 'DESC']
         ],
-        include: ['rooms1', 'rooms2']
+        include: ['profile', 'rooms1', 'rooms2']
       });
 
       return res.status(200).json({
