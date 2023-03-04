@@ -10,6 +10,19 @@ const isAdmin = async (req, res, next) => {
   next();
 };
 
+const isUser = async (req, res, next) => {
+  if (req.user.role !== 'USER') {
+    return res.status(403).json({
+      status: 'Failed',
+      statusCode: 403,
+      message: 'Require Admin Role!'
+    });
+  }
+
+  next();
+};
+
 module.exports = {
-  isAdmin
+  isAdmin,
+  isUser
 };
