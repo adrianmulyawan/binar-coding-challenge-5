@@ -3,6 +3,7 @@ const router = require('express').Router();
 // > Controller 
 const { AuthController } = require('../../controllers/api/auth.controller');
 const { ProfileController } = require('../../controllers/api/profile.controller');
+const { RoomController } = require('../../controllers/api/room.controller');
 
 // > Middleware 
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
@@ -37,5 +38,10 @@ router.get('/api/v1/user/profile', [
 router.put('/api/v1/user/profile-edit', [
   CheckTokenAuth.isAuthenticated
 ], ProfileController.editProfile);
+
+// > Route: Generate new room
+router.post('/api/v1/room/create', [
+  CheckTokenAuth.isAuthenticated
+], RoomController.createRoom);
 
 module.exports = router;
