@@ -17,8 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       User.hasMany(models.Room, {
-        foreignKey: 'user_id',
-        as: 'rooms'
+        foreignKey: 'user_id_1',
+        as: 'rooms1'
+      });
+
+      User.hasMany(models.Room, {
+        foreignKey: 'user_id_2',
+        as: 'rooms2'
       });
     }
   }
