@@ -78,5 +78,9 @@ router.get('/api/v1/room/find', [
   CheckTokenAuth.isAuthenticated,
   CheckRole.isAdmin
 ], RoomAdminController.getAllRooms);
+router.get('/api/v1/room/find/:room_code', [
+  CheckTokenAuth.isAuthenticated,
+  CheckRole.isAdmin
+], RoomAdminController.getDetailRoom);
 
 module.exports = router;
