@@ -39,9 +39,18 @@ router.put('/api/v1/user/profile-edit', [
   CheckTokenAuth.isAuthenticated
 ], ProfileController.editProfile);
 
+// > Route: Room
 // > Route: Generate new room
 router.post('/api/v1/room/create', [
   CheckTokenAuth.isAuthenticated
 ], RoomController.createRoom);
+// > Route: Add friend to room
+router.put('/api/v1/room/invite/:room_code', [
+  CheckTokenAuth.isAuthenticated
+], RoomController.inviteFriend);
+// > Route: Start Fight
+router.post('/api/v1/room/fight/:room_code', [
+  CheckTokenAuth.isAuthenticated
+], RoomController.startFight);
 
 module.exports = router;
