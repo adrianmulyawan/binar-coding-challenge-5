@@ -4,10 +4,12 @@ const router = require('express').Router();
 const { AuthController } = require('../../controllers/api/auth.controller');
 const { ProfileController } = require('../../controllers/api/profile.controller');
 const { RoomController } = require('../../controllers/api/room.controller');
+const { UserController } = require('../../controllers/api/admin/user.controller');
 
 // > Middleware 
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
 const CheckTokenAuth = require('../../middlewares/jwtRestrict.middleware');
+const CheckRole = require('../../middlewares/checkRole.middleware');
 
 // ========================================================================
 
@@ -52,5 +54,13 @@ router.put('/api/v1/room/invite/:room_code', [
 router.post('/api/v1/room/fight/:room_code', [
   CheckTokenAuth.isAuthenticated
 ], RoomController.startFight);
+
+// ========================================================================
+
+// > Admin Route
+router.get('/api/v1/user/find', [
+  CheckTokenAuth.isAuthenticated,
+  CheckRole.isAdmin
+], UserController.findAllUser);
 
 module.exports = router;
