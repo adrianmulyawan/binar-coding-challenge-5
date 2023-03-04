@@ -61,9 +61,14 @@ router.post('/api/v1/room/fight/:room_code', [
 // ========================================================================
 
 // > Admin Route
+// => User
 router.get('/api/v1/user/find', [
   CheckTokenAuth.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findAllUser);
+router.get('/api/v1/user/find/:id', [
+  CheckTokenAuth.isAuthenticated,
+  CheckRole.isAdmin
+], UserController.findUserById);
 
 module.exports = router;
