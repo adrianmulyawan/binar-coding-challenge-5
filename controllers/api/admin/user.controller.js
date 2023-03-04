@@ -5,6 +5,9 @@ class UserController {
   static findAllUser = async (req, res) => {
     try {
       const items = await User.findAll({
+        where: {
+          role: 'USER'
+        },
         order: [
           ['createdAt', 'DESC']
         ],
