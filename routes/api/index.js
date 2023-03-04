@@ -4,7 +4,9 @@ const router = require('express').Router();
 const { AuthController } = require('../../controllers/api/auth.controller');
 const { ProfileController } = require('../../controllers/api/profile.controller');
 const { RoomController } = require('../../controllers/api/room.controller');
+// > Controller Admin
 const { UserController } = require('../../controllers/api/admin/user.controller');
+const { RoomAdminController } = require('../../controllers/api/admin/room.controller');
 
 // > Middleware 
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
@@ -70,5 +72,11 @@ router.get('/api/v1/user/find/:id', [
   CheckTokenAuth.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findUserById);
+
+// => Room
+router.get('/api/v1/room/find', [
+  CheckTokenAuth.isAuthenticated,
+  CheckRole.isAdmin
+], RoomAdminController.getAllRooms);
 
 module.exports = router;
