@@ -15,7 +15,7 @@ const isUser = async (req, res, next) => {
     return res.status(403).json({
       status: 'Failed',
       statusCode: 403,
-      message: 'Require Admin Role!'
+      message: 'Require User Role!'
     });
   }
 
