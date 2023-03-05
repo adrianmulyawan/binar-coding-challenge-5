@@ -1,6 +1,7 @@
 require('dotenv').config();
 const models = require('../../models')
 const User = models.User;
+const Profile = models.Profile;
 const bcrypt = require('bcrypt');
 const saltRounds = +process.env.SALT_ROUND;
 const jwt = require('jsonwebtoken');
@@ -80,16 +81,20 @@ class AuthController {
   }
 
   static whoAmI = async (req, res) => {
-    const {id} = req.user.dataValues;
-    const profile = await User.findOne({
+    const profile = await Profile.findOne({
       where: {
-        id
+        user_id: req.user.dataValues.id
       }
     });
 
-    res.render('profile', {
-      profile
+    console.info(profile);
+
+    res.render('pages/user-settings', {
+      layout: 'layouts/auth-layouts',
+      title: 'User Settings',
+      data: profile
     });
+  
   };
 };
 
