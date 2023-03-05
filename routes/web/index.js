@@ -32,4 +32,7 @@ router.get('/profile-user', [
   CheckAuthenticated.isAuthenticated
 ], AuthController.whoAmI);
 
+// > Route: Logout
+router.get('/logout', AuthController.logout);
+
 module.exports = router;
