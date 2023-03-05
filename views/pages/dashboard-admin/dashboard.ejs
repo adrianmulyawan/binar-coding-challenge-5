@@ -54,8 +54,8 @@
                       <tr>
                         <td class="text-center"><%= index += 1 %></td>
                         <td class="text-center"><%= user.username %></td>
-                        <td class="text-center"><%= user.full_name %></td>
-                        <td class="text-center"><%= user.email %></td>
+                        <td class="text-center"><%= user.profile.fullname %></td>
+                        <td class="text-center"><%= user.profile.email %></td>
                       </tr>
                     <% }) %>
                   <% } %>   
@@ -75,8 +75,9 @@
                 <thead>
                   <tr>
                     <th class="text-center">No</th>
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Skor Permainan</th>
+                    <th class="text-center">Room Code</th>
+                    <th class="text-center">Player 1</th>
+                    <th class="text-center">Player 2</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -88,8 +89,9 @@
                     <% histories.forEach((history, index) => { %>
                       <tr>
                         <td class="text-center"><%= index += 1 %></td>
-                        <td class="text-center"><%= history.user.full_name %></td>
-                        <td class="text-center"><%= history.score %></td>
+                        <td class="text-center"><%= history.room_code %></td>
+                        <td class="text-center"><%= history.userId1.username %></td>
+                        <td class="text-center"><%= history.userId2.username %></td>
                       </tr>
                     <% }) %>
                   <% } %>
