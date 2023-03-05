@@ -2,8 +2,10 @@ const router = require('express').Router();
 const passport = require('../../lib/passport-local');
 
 // > Middleware 
-const CheckUsername = require('../../middlewares/web/checkDuplicate.middleware');
-const CheckAuthenticated = require('../../middlewares/web/checkAuthenticated.middleware');
+const CheckUsername = require('../../middlewares/web/checkDuplicate.middleware'); 
+// CheckUsername => Middleware pengecekan apakah username sudah digunakan / belum
+const CheckAuthenticated = require('../../middlewares/web/checkAuthenticated.middleware'); 
+// CheckAuthenticated => Middleware pengecekan apakah user sudah terautentikasi (login) / belum (memiliki session)
 
 // > Controller
 const { HomeController } = require('../../controllers/web/home.controller');
