@@ -5,9 +5,9 @@ const Room = models.Room;
 class DashboardAdminController {
     static dashboardAdmin = async (req, res) => {
         const countUser =  await User.count({
-          where: {
+            where: {
             role: 'USER'
-          }
+            }
         });
       
         const countAdmin = await User.count({
@@ -40,7 +40,7 @@ class DashboardAdminController {
           histories: histories,
           username: req.user.dataValues.username,
         });
-      };
+    };
 };
 
 module.exports = {
