@@ -17,21 +17,25 @@
                 <thead>
                   <tr>
                     <th class="text-center">No</th>
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Skor Permainan</th>
+                    <th class="text-center">Room Code</th>
+                    <th class="text-center">Player 1</th>
+                    <th class="text-center">Player 2</th>
+                    <th class="text-center">Winner</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% if (histories.length < 1) { %>
                     <tr>
-                      <td class="text-center" colspan="3">1</td>
+                      <td class="text-center" colspan="5">1</td>
                     </tr>
                   <% } else { %>
                     <% histories.forEach((history, index) => { %>
                       <tr>
                         <td class="text-center"><%= index += 1 %></td>
-                        <td class="text-center"><%= history.user.full_name %></td>
-                        <td class="text-center"><%= history.score %></td>
+                        <td class="text-center"><%= history.room_code %></td>
+                        <td class="text-center"><%= history.userId1.username %></td>
+                        <td class="text-center"><%= history.userId2.username %></td>
+                        <td class="text-center"><%= history.userId1.username || history.userId2.username %></td>
                       </tr>
                     <% }) %>
                   <% } %>
