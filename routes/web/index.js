@@ -6,23 +6,26 @@ const CheckUsername = require('../../middlewares/web/checkDuplicate.middleware')
 // CheckUsername => Middleware pengecekan apakah username sudah digunakan / belum
 const CheckAuthenticated = require('../../middlewares/web/checkAuthenticated.middleware'); 
 // CheckAuthenticated => Middleware pengecekan apakah user sudah terautentikasi (login) / belum (memiliki session)
+const CheckLogin = require('../../middlewares/web/checkLogin.middleware');
+// CheckLogin => Middleware pengecekan apakah user sudah login atau belum jika belum login maka user bisa akses tujuan
+// jika telah login akan di direct kehalaman utama
 
 // > Controller
 const { HomeController } = require('../../controllers/web/home.controller');
 const { AuthController } = require('../../controllers/web/auth.controller');
 
 // > Route: Home dan Game Page
-router.get('/', HomeController.getHomePage);
-router.get('/game', HomeController.getGamePage);
+router.get('/', [CheckAuthenticated.isAuthenticated], HomeController.getHomePage);
+router.get('/game', [CheckAuthenticated.isAuthenticated], HomeController.getGamePage);
 
 // > Route: Authentication
 // => Register
-router.get('/register', AuthController.pageRegister);
+router.get('/register', [CheckLogin.isLogin], AuthController.pageRegister);
 router.post('/register', [
   CheckUsername.checkUsername
 ], AuthController.userRegister);
 // => Login
-router.get('/login', AuthController.pageLogin);
+router.get('/login', [CheckLogin.isLogin], AuthController.pageLogin);
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
