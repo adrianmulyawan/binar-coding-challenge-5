@@ -75,21 +75,20 @@ class AuthController {
 
       return Promise.resolve(userDatabase);
     } catch (error) {
-      console.info(error);
+      return Promise.reject(error);
     }
   }
 
-  static whoAmI = (req, res) => {
-    const {id, username, role} = req.user;
-    return res.status(200).json({
-      status: 'Success',
-      statusCode: 200,
-      message: `Hello ${username}`,
-      user: {
-        id,
-        username,
-        role
+  static whoAmI = async (req, res) => {
+    const {id} = req.user.dataValues;
+    const profile = await User.findOne({
+      where: {
+        id
       }
+    });
+
+    res.render('profile', {
+      profile
     });
   };
 };
