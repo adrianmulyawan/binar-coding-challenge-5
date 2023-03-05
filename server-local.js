@@ -26,6 +26,8 @@ app.use(session({
 // > User Package method-override
 router.use(methodOverride('_method'));
 
+app.use(flash());
+
 // > Set ejs to view engine
 app.set('view engine', 'ejs');
 // > Set express-ejs-layouts
