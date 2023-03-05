@@ -50,5 +50,10 @@ router.get('/dashboard-admin', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.dashboardAdmin);
+// => Dashboard Recent Plays
+router.get('/dashboard-admin/recent-plays', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.recentPlays);
 
 module.exports = router;
