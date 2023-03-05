@@ -33,6 +33,7 @@ app.set('view engine', 'ejs');
 // > Set express-ejs-layouts
 app.use(expressLayouts);
 
+// > Route from routes/web/index.js
 app.use(router);
 
 // > Error Handling Middleware
