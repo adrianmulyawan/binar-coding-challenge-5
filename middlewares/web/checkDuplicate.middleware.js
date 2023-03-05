@@ -1,4 +1,4 @@
-const models = require('../models');
+const models = require('../../models');
 const User = models.User;
 
 const checkUsername = async (req, res, next) => {
@@ -10,7 +10,8 @@ const checkUsername = async (req, res, next) => {
     });
 
     if (checkUsername) {
-      console.info('Username is Already Exists')
+      console.info('Username is Already Exists');
+      return res.redirect('/register');
     }
 
     next();
