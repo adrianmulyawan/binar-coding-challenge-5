@@ -5,8 +5,8 @@ class HomeController {
     res.render('pages/index', {
       layout: 'layouts/main-layouts',
       title: 'Temple Run',
-      username: req.session.username,
-      checkRole: req.session.role
+      username: req.user.username,
+      checkRole: req.user.role
     });
   };
 
@@ -15,7 +15,7 @@ class HomeController {
     res.render('pages/game', {
       layout: 'layouts/game-layouts',
       title: 'ROCK, PAPER, SCISSORS GAME',
-      checkRole: req.session.role
+      checkRole: req.user.role
     });
   };
 };

@@ -1,26 +1,35 @@
 require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
+const flash = require('express-flash');
 const morgan = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
-const passport = require('./lib/passport-jwt');
+const methodOverride = require('method-override');
 const router = require('./routes/web');
 
 const app = express();
 const port = +process.env.PORT;
-
-// > Set ejs to view engine
-app.set('view engine', 'ejs');
-// > Set express-ejs-layouts
-app.use(expressLayouts);
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+app.use(express.static('public'));
 
-// > Use passport jwt to http server
-app.use(passport.initialize());
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false
+}));
+
+// > User Package method-override
+router.use(methodOverride('_method'));
+
+// > Set ejs to view engine
+app.set('view engine', 'ejs');
+// > Set express-ejs-layouts
+app.use(expressLayouts);
 
 app.use(router);
 
