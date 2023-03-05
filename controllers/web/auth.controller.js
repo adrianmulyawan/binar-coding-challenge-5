@@ -89,7 +89,7 @@ class AuthController {
 
     console.info(profile);
 
-    res.render('pages/user-settings', {
+    res.render('pages/user-profile', {
       layout: 'layouts/auth-layouts',
       title: 'User Settings',
       data: profile
