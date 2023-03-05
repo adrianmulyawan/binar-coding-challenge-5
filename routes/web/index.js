@@ -15,6 +15,7 @@ const CheckRole = require('../../middlewares/web/checkRole.middleware');
 // > Controller
 const { HomeController } = require('../../controllers/web/home.controller');
 const { AuthController } = require('../../controllers/web/auth.controller');
+const { DashboardAdminController } = require('../../controllers/web/admin/dashboard-admin.controller');
 
 // > Route: Home dan Game Page
 router.get('/', [CheckAuthenticated.isAuthenticated], HomeController.getHomePage);
@@ -41,5 +42,13 @@ router.get('/profile-user', [
 
 // > Route: Logout
 router.get('/logout', AuthController.logout);
+
+// ==========================================================
+// > Dashboard ADMIN
+// => Dashboard Main
+router.get('/dashboard-admin', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.dashboardAdmin);
 
 module.exports = router;
