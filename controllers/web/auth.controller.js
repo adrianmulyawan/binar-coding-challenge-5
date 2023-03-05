@@ -13,7 +13,7 @@ class AuthController {
       title: 'Register',
       // message: req.flash('message')
     });
-  }
+  };
 
   // Function Handle Register Process
   static userRegister = async (req, res) => {
@@ -33,9 +33,7 @@ class AuthController {
           address: 'Alamat Belum Diatur',
           phone_number: 'No Ponsel Belum diatur'
         }
-      }, {
-        include: ['profile']
-      });
+      }, { include: ['profile'] });
 
       // > Return to /login route
       return res.redirect('/login');
@@ -46,7 +44,7 @@ class AuthController {
 
   // Function handle method rander view login
   static pageLogin = (req, res) => {
-    res.render('pages/login', {
+    return res.render('pages/login', {
       layout: 'layouts/auth-layouts',
       title: 'Login',
       // message: req.flash('message'),
