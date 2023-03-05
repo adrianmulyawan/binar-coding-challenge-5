@@ -1,7 +1,11 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  return res.send('<h1>Oke</h1>');
-});
+// > Middleware 
+// > Controller
+const { HomeController } = require('../../controllers/web/home.controller');
+
+// > Route: Home dan Game Page
+router.get('/', HomeController.getHomePage);
+router.get('/game', HomeController.getGamePage);
 
 module.exports = router;
