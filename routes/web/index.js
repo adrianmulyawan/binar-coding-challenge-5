@@ -9,6 +9,8 @@ const CheckAuthenticated = require('../../middlewares/web/checkAuthenticated.mid
 const CheckLogin = require('../../middlewares/web/checkLogin.middleware');
 // CheckLogin => Middleware pengecekan apakah user sudah login atau belum jika belum login maka user bisa akses tujuan
 // jika telah login akan di direct kehalaman utama
+const CheckRole = require('../../middlewares/web/checkRole.middleware');
+// => CheckRole => Middleware pengecekan user yang login
 
 // > Controller
 const { HomeController } = require('../../controllers/web/home.controller');
