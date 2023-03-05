@@ -1,7 +1,9 @@
 const router = require('express').Router();
+const passport = require('../../lib/passport-local');
 
 // > Middleware 
 const CheckUsername = require('../../middlewares/web/checkDuplicate.middleware');
+const CheckAuthenticated = require('../../middlewares/web/checkAuthenticated.middleware');
 
 // > Controller
 const { HomeController } = require('../../controllers/web/home.controller');
@@ -19,5 +21,15 @@ router.post('/register', [
 ], AuthController.userRegister);
 // => Login
 router.get('/login', AuthController.pageLogin);
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+// > Route: Profile User
+router.get('/profile-user', [
+  CheckAuthenticated.isAuthenticated
+], AuthController.whoAmI);
 
 module.exports = router;
