@@ -1,0 +1,39 @@
+<main>
+  <section class="section-login position-relative" id="login">
+    <div class="container position-absolute top-50 start-50 translate-middle">
+      <div class="section-login-game row justify-content-center">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white p-3" style="border-radius: 1rem;">
+              <div class="text-login text-center my-0">
+                <img src="../../../images/logo_app.webp" alt="logo_app" width="60" class="logo-app mb-2">
+                <h4>Data Profile User</h4>
+              </div>
+              <form method="post" action="#" class="form-login">
+                <div class="mb-3">
+                  <label for="fullname" class="form-label">Fullname</label>
+                  <input type="text" class="form-control" id="fullname" name="fullname" value="<%= data.fullname %>" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" value="<%= data.email %>" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Alamat</label>
+                  <input type="text" class="form-control" id="address" name="address" value="<%= data.address %>" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Nomor Handphone</label>
+                  <input type="text" class="form-control" id="address" name="address" value="<%= data.phone_number %>" disabled>
+                </div>
+              </form>
+              <div class="text-register text-center my-3">
+                <p class="mb-0"><a href="/" class="text-white-100 fw-bold btn btn-primary" style="text-decoration:none">Kembali Kehalaman Utama</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
