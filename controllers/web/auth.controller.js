@@ -52,26 +52,8 @@ class AuthController {
     });
   };
 
-  // Function Generate JWT Token
-  static generateToken = (id, username, role) => {
-    // > Tangkap id, username, dan role untuk dijadikan payload
-    const payload = {
-      id, username, role
-    };
-
-    // > SECRET_KEY Dari .env file 
-    const SECRET_KEY = process.env.SECRET_KEY;
-
-    // > Buat token
-    // => JWT akan expired dalam 24 jam
-    const token = jwt.sign(payload, SECRET_KEY, {
-      expiresIn: 86400
-    });
-
-    return token;
-  }
-
-  static userLogin = async (username, password) => {
+  // Function handle login user
+  static loginProcess = async (username, password) => {
     try {
       const userDatabase = await User.findOne({
         where: {
@@ -80,45 +62,22 @@ class AuthController {
       });
 
       if (!userDatabase) {
-        console.info('Check Again Your Login Data');
-        return Promise.reject('Check Again Your Login Data!');
+        console.info('Check Your Login Data Again!');
+        return Promise.reject('Check Your Login Data Again!');
       }
 
       const checkPassword = await bcrypt.compare(password, userDatabase.password);
 
       if (!checkPassword) {
-        console.info('Check Again Your Login Data');
-        return Promise.reject('Check Again Your Login Data!');
+        console.info('Password Wrong!');
+        return Promise.reject('Password Wrong!');
       }
 
       return Promise.resolve(userDatabase);
     } catch (error) {
       console.info(error);
     }
-  };
-
-  static loginWithJWT = async (req, res) => {
-    try {
-      // > Tangkap Username dan Password = 
-      const { username, password } = req.body;
-
-      // > Check Username dan Password 
-      // => Apakah username atau password sama dengan db
-      const checkLogin = await AuthController.userLogin(username, password);
-
-      // > Simpan id, username, dan role user
-      const idUser = checkLogin.dataValues.id;
-      const usernameUser = checkLogin.dataValues.username;
-      const roleUser = checkLogin.dataValues.role;
-
-      // > Generate token 
-      const generateToken = AuthController.generateToken(idUser, usernameUser, roleUser);
-
-      return res.redirect('/');
-    } catch (error) {
-      console.info(error);
-    }
-  };
+  }
 
   static whoAmI = (req, res) => {
     const {id, username, role} = req.user;
