@@ -41,6 +41,19 @@ class DashboardAdminController {
           username: req.user.dataValues.username,
         });
     };
+
+    static recentPlays = async (req, res) => {
+        const histories = await Room.findAll({
+            include: ['userId1', 'userId2'],
+        });
+        
+        return res.render('pages/dashboard-admin/dashboard-recents', {
+            layout: 'layouts/dashboard-admin-layouts',
+            title: 'Dashboard: Hasil Pertandingan',
+            histories: histories,
+            username: req.user.dataValues.username,
+        });
+    };
 };
 
 module.exports = {
