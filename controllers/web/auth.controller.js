@@ -80,6 +80,7 @@ class AuthController {
     }
   }
 
+  // Function handle profile user
   static whoAmI = async (req, res) => {
     const profile = await Profile.findOne({
       where: {
@@ -94,7 +95,13 @@ class AuthController {
       title: 'User Settings',
       data: profile
     });
-  
+  };
+
+   // Function Handle Logout
+  static logout = (req, res) => {
+    req.session.destroy(function(err) {
+      res.redirect('/login');
+    });
   };
 };
 
