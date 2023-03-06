@@ -1,6 +1,9 @@
+require('dotenv').config();
 const models = require('../../../models');
 const User = models.User;
 const Room = models.Room;
+const bcrypt = require('bcrypt');
+const saltRounds = +process.env.SALT_ROUND;
 
 class DashboardAdminController {
     static dashboardAdmin = async (req, res) => {
@@ -95,6 +98,35 @@ class DashboardAdminController {
           layout: 'layouts/error-handling-layouts',
           title: 'Not Found!'
         });
+      }
+    };
+
+    static addUser = async (req, res) => {
+      res.render('pages/dashboard-admin/dashboard-users-add', {
+        layout: 'layouts/dashboard-admin-layouts',
+        title: 'Dashboard: Tambah User',
+        username: req.session.username,
+      });
+    };
+
+    static addUserProcess = async (req, res) => {
+      try {
+        const {username, password} = req.body;
+        const bcryptPassword = await bcrypt.hash(password, saltRounds);
+    
+        await User.create({
+          username, 
+          password: bcryptPassword,
+          profile: {
+            fullname: 'Nama Lengkap Belum Diatur',
+            email: 'Email Belum Diatur',
+            address: 'Alamat Belum Diatur',
+            phone_number: 'Nomor Handphone Belum Diatur',
+          }
+        }, { include: ['profile'] });
+        return res.redirect('/dashboard-admin/users');
+      } catch (error) {
+        console.info(error);
       }
     };
 };
