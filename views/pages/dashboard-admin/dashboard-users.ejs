@@ -5,46 +5,6 @@
       <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">User Yang Terdaftar Didalam Sistem</li>
       </ol>
-
-      <% if (success.length > 0) { %>
-        <div class="alert alert-success d-flex align-items-center mt-3 mb-3" role="alert">
-          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-            </symbol>
-          </svg>
-          <div>
-            <%= success %> 
-          </div>
-        </div>
-      <% } %>
-
-      <% if (successUpdate.length > 0) { %>
-        <div class="alert alert-success d-flex align-items-center mt-3 mb-3" role="alert">
-          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-            </symbol>
-          </svg>
-          <div>
-            <%= successUpdate %> 
-          </div>
-        </div>
-      <% } %>
-
-      <% if (failedUpdate.length > 0) { %>
-        <div class="alert alert-success d-flex align-items-center mt-3 mb-3" role="alert">
-          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-            </symbol>
-          </svg>
-          <div>
-            <%= failedUpdate %> 
-          </div>
-        </div>
-      <% } %>
-
       <div class="row">
         <div class="col-xl-12">
           <div class="card mb-4">
@@ -60,7 +20,7 @@
                     <th class="text-center">Username</th>
                     <th class="text-center">Nama</th>
                     <th class="text-center">Email</th>
-                    <th class="text-center">Aksi</th>
+                    <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -73,12 +33,10 @@
                       <tr>
                         <td class="text-center"><%= index += 1 %></td>
                         <td class="text-center"><%= user.username %></td>
-                        <td class="text-center"><%= user.full_name %></td>
-                        <td class="text-center"><%= user.email %></td>
+                        <td class="text-center"><%= user.profile.fullname %></td>
+                        <td class="text-center"><%= user.profile.email %></td>
                         <td class="text-center">
-                          <a href="/dashboard-admin/users/detail/<%= user.uuid %>" class="btn badge bg-primary">Detail</a>
-                          <a href="/dashboard-admin/users/update/<%= user.uuid %>" class="btn badge bg-secondary">Edit</a>
-                          <a href="/dashboard-admin/users/delete/<%= user.uuid %>" class="btn badge bg-danger">Hapus</a>
+                          <a href="/dashboard-admin/users/detail/<%= user.username %>" class="btn badge bg-primary">Detail</a>
                         </td>
                       </tr>
                     <% }) %>
