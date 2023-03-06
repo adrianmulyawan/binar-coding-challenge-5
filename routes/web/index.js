@@ -60,9 +60,20 @@ router.get('/dashboard-admin/users', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.showAllUsers);
+// => Dashboard Show Detail User
 router.get('/dashboard-admin/users/detail/:username', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.detailUser);
+// => Dashboard Show Add User Form
+router.get('/dashboard-admin/users/add', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.addUser);
+// => Dashboard Process Save User Data
+router.post('/dashboard-admin/users/add', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.addUserProcess);
 
 module.exports = router;
