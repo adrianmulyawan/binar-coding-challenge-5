@@ -60,5 +60,9 @@ router.get('/dashboard-admin/users', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.showAllUsers);
+router.get('/dashboard-admin/users/detail/:username', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.detailUser);
 
 module.exports = router;
