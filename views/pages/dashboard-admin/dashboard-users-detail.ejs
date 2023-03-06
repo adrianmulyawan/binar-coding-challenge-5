@@ -7,13 +7,13 @@
           <div class="card mb-4">
             <div class="card-header">
               <i class="fas fa-users"></i>
-              Detail User: <%= data.full_name %>
+              Detail User: <%= data.profile.fullname %>
             </div>
             <div class="card-body">
               <form>
                 <div class="mb-3">
                   <label for="full_name" class="form-label">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="full_name" name="full_name" value="<%= data.full_name %>" disabled>
+                  <input type="text" class="form-control" id="full_name" name="full_name" value="<%= data.profile.fullname %>" disabled>
                 </div>
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
@@ -21,7 +21,15 @@
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" value="<%= data.email %>" disabled>
+                  <input type="text" class="form-control" id="email" name="email" value="<%= data.profile.email %>" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Alamat</label>
+                  <input type="text" class="form-control" id="address" name="address" value="<%= data.profile.address %>" disabled>
+                </div>
+                <div class="mb-3">
+                  <label for="phone_number" class="form-label">Nomor Handphone</label>
+                  <input type="text" class="form-control" id="phone_number" name="phone_number" value="<%= data.profile.phone_number %>" disabled>
                 </div>
                 <a href="/dashboard-admin/users" class="btn btn-md btn-primary">Kembali Kehalaman User</a>
               </form>
