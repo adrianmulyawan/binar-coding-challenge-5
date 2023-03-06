@@ -1,70 +1,12 @@
 <div id="layoutSidenav_content">
   <main>
     <div class="container-fluid px-4">
-      <h1 class="mt-4">Dashboard Admin</h1>
+      <h1 class="mt-4">Dashboard User</h1>
       <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Hello Admin, Selamat Datang Dihalaman Dashboard Anda!</li>
+        <li class="breadcrumb-item active">Hello <%= username %>, Selamat Datang Dihalaman Dashboard Anda!</li>
       </ol>
       <div class="row">
-        <div class="col-xl-6 col-md-6">
-          <div class="card bg-primary text-white mb-4">
-            <div class="card-body">
-              <div class="text-uppercase fs-4">
-                <p><b>Jumlah User</b></p>
-              </div>
-              <span class="total-user fs-4"><%= countUser %></span>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-6">
-          <div class="card bg-warning text-white mb-4">
-            <div class="card-body">
-              <div class="text-uppercase fs-4">
-                <p><b>Jumlah Admin</b></p>
-              </div>
-              <span class="total-admin fs-4"><%= countAdmin %></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-6">
-          <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-users"></i>
-              Daftar User Terbaru
-            </div>
-            <div class="card-body">
-              <table class="table table-responsive table-bordered">
-                <thead>
-                  <tr>
-                    <th class="text-center">No</th>
-                    <th class="text-center">Username</th>
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% if (users.length < 1) { %>
-                    <tr>
-                      <td class="text-center" colspan="4">Belum Ada Data Users</td>
-                    </tr>
-                  <% } else { %>
-                    <% users.forEach((user, index) => { %>
-                      <tr>
-                        <td class="text-center"><%= index += 1 %></td>
-                        <td class="text-center"><%= user.username %></td>
-                        <td class="text-center"><%= user.profile.fullname %></td>
-                        <td class="text-center"><%= user.profile.email %></td>
-                      </tr>
-                    <% }) %>
-                  <% } %>   
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6">
+        <div class="col-xl-12">
           <div class="card mb-4">
             <div class="card-header">
               <i class="fas fa-gamepad"></i>
@@ -84,7 +26,7 @@
                 <tbody>
                   <% if (histories.length < 1) { %>
                     <tr>
-                      <td class="text-center" colspan="5">1</td>
+                      <td class="text-center" colspan="5">Anda Belum Melakukan Permainan</td>
                     </tr>
                   <% } else { %>
                     <% histories.forEach((history, index) => { %>
