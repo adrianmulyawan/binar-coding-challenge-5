@@ -55,5 +55,10 @@ router.get('/dashboard-admin/recent-plays', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.recentPlays);
+// => Dashboard Show All Data User
+router.get('/dashboard-admin/users', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isAdmin
+], DashboardAdminController.showAllUsers);
 
 module.exports = router;
