@@ -72,6 +72,31 @@ class DashboardAdminController {
         username: req.user.dataValues.username,
       });
     };
+
+    static detailUser = async (req, res) => {
+      const username = req.params.username;
+    
+      try {
+        const data = await User.findOne({
+          where: {
+            username
+          },
+          include: ['profile']
+        });
+      
+        res.render('pages/dashboard-admin/dashboard-users-detail', {
+          layout: 'layouts/dashboard-admin-layouts',
+          title: 'Dashboard: Detail User',
+          data: data,
+          username: req.user.dataValues.username,
+        });
+      } catch(err) {
+        res.render('pages/notfound', {
+          layout: 'layouts/error-handling-layouts',
+          title: 'Not Found!'
+        });
+      }
+    };
 };
 
 module.exports = {
