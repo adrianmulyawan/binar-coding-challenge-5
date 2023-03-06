@@ -16,6 +16,7 @@ const CheckRole = require('../../middlewares/web/checkRole.middleware');
 const { HomeController } = require('../../controllers/web/home.controller');
 const { AuthController } = require('../../controllers/web/auth.controller');
 const { DashboardAdminController } = require('../../controllers/web/admin/dashboard-admin.controller');
+const { DashboardUserController } = require('../../controllers/web/user/dashboard-user.controller');
 
 // > Route: Home dan Game Page
 router.get('/', [CheckAuthenticated.isAuthenticated], HomeController.getHomePage);
@@ -75,5 +76,13 @@ router.post('/dashboard-admin/users/add', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], DashboardAdminController.addUserProcess);
+
+// ==========================================================
+// > Dashboard USER
+// => Dashboard Main
+router.get('/dashboard-user', [
+  CheckAuthenticated.isAuthenticated,
+  CheckRole.isUser
+], DashboardUserController.dashboardAdmin);
 
 module.exports = router;
