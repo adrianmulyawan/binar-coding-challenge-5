@@ -54,6 +54,24 @@ class DashboardAdminController {
             username: req.user.dataValues.username,
         });
     };
+
+    static showAllUsers = async (req, res) => {
+      const items = await User.findAll({
+        include: ['profile'],
+        order: [
+          ['createdAt', 'DESC']
+        ]
+      });
+
+      console.info(items, '==> Hasil usernya');
+
+      return res.render('pages/dashboard-admin/dashboard-users', {
+        layout: 'layouts/dashboard-admin-layouts',
+        title: 'Dashboard: Users',
+        users: items,
+        username: req.user.dataValues.username,
+      });
+    };
 };
 
 module.exports = {
