@@ -1,0 +1,120 @@
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Dashboard Admin</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Hello Admin, Selamat Datang Dihalaman Dashboard Anda!</li>
+      </ol>
+      <div class="row">
+        <div class="col-xl-6 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+              <div class="text-uppercase fs-4">
+                <p><b>Jumlah User</b></p>
+              </div>
+              <span class="total-user fs-4"><%= countUser %></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-md-6">
+          <div class="card bg-warning text-white mb-4">
+            <div class="card-body">
+              <div class="text-uppercase fs-4">
+                <p><b>Jumlah Admin</b></p>
+              </div>
+              <span class="total-admin fs-4"><%= countAdmin %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-users"></i>
+              Daftar User Terbaru
+            </div>
+            <div class="card-body">
+              <table class="table table-responsive table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Nama</th>
+                    <th class="text-center">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (users.length < 1) { %>
+                    <tr>
+                      <td class="text-center" colspan="4">Belum Ada Data Users</td>
+                    </tr>
+                  <% } else { %>
+                    <% users.forEach((user, index) => { %>
+                      <tr>
+                        <td class="text-center"><%= index += 1 %></td>
+                        <td class="text-center"><%= user.username %></td>
+                        <td class="text-center"><%= user.profile.fullname %></td>
+                        <td class="text-center"><%= user.profile.email %></td>
+                      </tr>
+                    <% }) %>
+                  <% } %>   
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-gamepad"></i>
+              Daftar Permainan Terbaru
+            </div>
+            <div class="card-body">
+              <table class="table table-responsive table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Room Code</th>
+                    <th class="text-center">Player 1</th>
+                    <th class="text-center">Player 2</th>
+                    <th class="text-center">Winner</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (histories.length < 1) { %>
+                    <tr>
+                      <td class="text-center" colspan="5">1</td>
+                    </tr>
+                  <% } else { %>
+                    <% histories.forEach((history, index) => { %>
+                      <tr>
+                        <td class="text-center"><%= index += 1 %></td>
+                        <td class="text-center"><%= history.room_code %></td>
+                        <td class="text-center"><%= history.userId1.username %></td>
+                        <td class="text-center"><%= history.userId2.username %></td>
+                        <td class="text-center"><%= history.userId1.username || history.userId2.username %></td>
+                      </tr>
+                    <% }) %>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Adrian Mulyawan 2023</div>
+        <div>
+          <a href="#">Privacy Policy</a>
+          &middot;
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

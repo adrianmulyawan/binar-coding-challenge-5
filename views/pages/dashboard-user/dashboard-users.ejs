@@ -1,0 +1,64 @@
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Dashboard User</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">User Yang Terdaftar Didalam Sistem</li>
+      </ol>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-users"></i>
+              Daftar User Terbaru
+            </div>
+            <div class="card-body">
+              <table class="table table-responsive table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Nama</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (users.length < 1) { %>
+                    <tr>
+                      <td class="text-center" colspan="4">Belum Ada Data Users</td>
+                    </tr>
+                  <% } else { %>
+                    <% users.forEach((user, index) => { %>
+                      <tr>
+                        <td class="text-center"><%= index += 1 %></td>
+                        <td class="text-center"><%= user.username %></td>
+                        <td class="text-center"><%= user.profile.fullname %></td>
+                        <td class="text-center"><%= user.profile.email %></td>
+                        <td class="text-center">
+                          <a href="/dashboard-admin/users/detail/<%= user.username %>" class="btn badge bg-primary">Detail</a>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } %>   
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Adrian Mulyawan 2023</div>
+        <div>
+          <a href="#">Privacy Policy</a>
+          &middot;
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
