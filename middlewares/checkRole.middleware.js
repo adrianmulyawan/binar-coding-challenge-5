@@ -1,8 +1,8 @@
 const isAdmin = async (req, res, next) => {
   if (req.user.role !== 'ADMIN') {
-    return res.status(403).json({
+    return res.status(401).json({
       status: 'Failed',
-      statusCode: 403,
+      statusCode: 401,
       message: 'Require Admin Role!'
     });
   }
@@ -12,9 +12,9 @@ const isAdmin = async (req, res, next) => {
 
 const isUser = async (req, res, next) => {
   if (req.user.role !== 'USER') {
-    return res.status(403).json({
+    return res.status(401).json({
       status: 'Failed',
-      statusCode: 403,
+      statusCode: 401,
       message: 'Require User Role!'
     });
   }
