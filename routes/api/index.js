@@ -9,8 +9,11 @@ const { UserController } = require('../../controllers/api/admin/user.controller'
 const { RoomAdminController } = require('../../controllers/api/admin/room.controller');
 
 // > Middleware 
+// => Check duplicate username when register process
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
+// => Check token jwt user login
 const CheckTokenAuth = require('../../middlewares/jwtRestrict.middleware');
+// => Check user role (masing-masing role memiliki batasan akses masing-masing)
 const CheckRole = require('../../middlewares/checkRole.middleware');
 
 // ========================================================================
