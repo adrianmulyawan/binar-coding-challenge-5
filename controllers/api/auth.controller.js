@@ -139,7 +139,8 @@ class AuthController {
         status: 'Failed',
         statusCode: 400,
         message: 'Something Error!',
-        error: error
+        // error ini didapatkan dari promise.reject method userLogin()
+        error: error 
       });
     }
   };
