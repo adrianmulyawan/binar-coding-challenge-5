@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 // > Controller 
+// => Controller to handle logic login and register
 const { AuthController } = require('../../controllers/api/auth.controller');
 const { ProfileController } = require('../../controllers/api/profile.controller');
 const { RoomController } = require('../../controllers/api/room.controller');
@@ -28,9 +29,14 @@ router.get('/api/v1/hello', (req, res) => {
 });
 
 // > Route: Authtentication
+// => Register
 router.post('/api/v1/register', [
   CheckDuplicate.checkUsername
 ], AuthController.userRegister);
+// => Login
+// # Tapi kita perlu autentikasi dahulu dengan middleware untuk cek apakah request user yang dikirim valid apa tidak
+// # Atau mengecek user mengirimkan token yang valid atau tidak 
+// # Middleware ini kita simpan didalam ./lib/passport-jwt.js dan kita panggil di server-jwt.js
 router.post('/api/v1/login', AuthController.loginWithJWT);
 
 // > Route: Check User Login
