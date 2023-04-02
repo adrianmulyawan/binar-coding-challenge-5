@@ -88,15 +88,22 @@ class RoomController {
     }
   }
 
+  // > Logic untuk pertandingan suwit
   static startFight = async (req, res) => {
     try {
       // > Cari room
+      // => Tangkap room codenya 
       const room_code = req.params.room_code
+      // => Cari didalam db apakah ada data dikolom room_code tabel 'Rooms' 
+      // => Yang room_code = room_code (dari params)
       const findRoom = await Room.findOne({
         where: {
           room_code
         }
       });
+
+      console.info(findRoom, '==> room ditemukan gak?');
+
       // > Jika room tidak ditemukan
       if (!findRoom) {
         return res.status(404).json({
@@ -106,19 +113,26 @@ class RoomController {
         });
       }
 
-      // > Hitung jumlah permain
+      // > Hitung jumlah permain untuk room_code ini (room_id berapa jumlah putaran permainan)
+      // => yang nantinya akan dihitung didalam tabel RoomFights (maksimal 3x suit)
+      // => perhitungan (count) dilakukan berdasarkan room_id dari tabel 'RoomFights' === id dari tabel 'Rooms'
       const countFightRoom = await RoomFight.count({
+        // > Cari 'room_id' = id dari variable 'findRoom'
         where: {
           room_id: findRoom.id
         }
       });
-      // > Jika suit = 0 kita update start_fight pada tabel room
+
+      console.info(countFightRoom, 'ini count fight room');
+
+      // > Jika suit = 0 (pertama kali suit) kita update start_fight pada tabel rooms
+      // => Index dimulai dari 0
       if (countFightRoom === 0) {
         await findRoom.update({
           start_fight: new Date()
         });
       }
-      // > Jika suit > 3x round makan return kesalahan
+      // > Jika suit > 3x round makan return kesalahan (return sudah bermain lebih dari 3x)
       if (countFightRoom > 3) {
         return res.status(400).json({
           status: 'Failed',
@@ -131,22 +145,28 @@ class RoomController {
       const { pil_user_1, pil_user_2 } = req.body;
       let result = null;
 
+      // > Cek inputan user (player 1)
       if (pil_user_1.toUpperCase() !== 'GUNTING' && pil_user_1.toUpperCase() !== 'BATU' && pil_user_1.toUpperCase() !== 'KERTAS') {
+        // => Jika inputan bukan gunting, batu atau kertas (return pesan kesalahan)
         return res.status(400).json({
-          status: 'Success',
+          status: 'Failed',
           statusCode: 400,
           message: 'Player 1 Input is Wrong!'
         });
       }
 
+      // > Cek inputan user (player 2)
       if (pil_user_2.toUpperCase() !== 'GUNTING' && pil_user_2.toUpperCase() !== 'BATU' && pil_user_2.toUpperCase() !== 'KERTAS') {
+        // => Jika inputan bukan gunting, batu atau kertas (return pesan kesalahan)
         return res.status(400).json({
-          status: 'Success',
+          status: 'Failed',
           statusCode: 400,
           message: 'Player 2 Input is Wrong!'
         });
       }
 
+      // > Logic suwit
+      // => akan memberikan id user yang menang pada kolom winner_user di table RoomFights
       if (pil_user_1.toUpperCase() === pil_user_2.toUpperCase()) {
         return res.status(200).json({
           message: 'PERTANDINGAN SERI'
@@ -167,14 +187,17 @@ class RoomController {
         winner_user: result
       });
 
-      // > Jika suit = 3 kita update finish_fight dan winner_user_id pada tabel room
+      // > Jika suit = 3x kita update finish_fight dan winner_user_id pada tabel room
       if (countFightRoom === 2) {
         // > Cari Pemenang Tiap Round
         const resultFight = await RoomFight.findAll({
+          // => Pencarian berdasarkan room_id (ada apa tidak room_id ini)
           where: {
             room_id: findRoom.id
           }
         });
+
+        console.info(resultFight, 'hasil dari result fight');
 
         let user1 = 0;
         let user2 = 0;
