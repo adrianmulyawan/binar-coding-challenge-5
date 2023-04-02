@@ -80,22 +80,25 @@ router.post('/api/v1/room/fight/:room_code', [
 // ========================================================================
 
 // > Admin Route
-// => User (Menampilkan seluruh data user yang role = user player)
+// => User
+// # User (Menampilkan seluruh data user yang role = user player)
 router.get('/api/v1/user/find', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findAllUser);
-// => Menampilkan detail player yang role = user player
+// # Menampilkan detail player yang role = user player
 router.get('/api/v1/user/find/:id', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findUserById);
 
 // => Room
+// # Menampilkan seluruh room pertarungan suwit 
 router.get('/api/v1/room/find', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], RoomAdminController.getAllRooms);
+// # Menampilkan detail room
 router.get('/api/v1/room/find/:room_code', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
