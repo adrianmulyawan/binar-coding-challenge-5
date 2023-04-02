@@ -3,7 +3,7 @@ const isAdmin = async (req, res, next) => {
     return res.status(401).json({
       status: 'Failed',
       statusCode: 401,
-      message: 'Require Admin Role!'
+      message: 'Require User Admin Role!'
     });
   }
 
@@ -15,7 +15,7 @@ const isUser = async (req, res, next) => {
     return res.status(401).json({
       status: 'Failed',
       statusCode: 401,
-      message: 'Require User Role!'
+      message: 'Require User Player Role!'
     });
   }
 
