@@ -13,7 +13,7 @@ const { RoomAdminController } = require('../../controllers/api/admin/room.contro
 // => Check duplicate username when register process
 const CheckDuplicate = require('../../middlewares/checkDuplicate.middleware');
 // => Check token jwt user login
-const CheckTokenAuth = require('../../middlewares/jwtRestrict.middleware');
+const CheckAuthenticated = require('../../middlewares/jwtRestrict.middleware');
 // => Check user role (masing-masing role memiliki batasan akses masing-masing)
 const CheckRole = require('../../middlewares/checkRole.middleware');
 
@@ -43,31 +43,31 @@ router.post('/api/v1/login', AuthController.loginWithJWT);
 // > Route: Check User Login
 // => Terdapat middleware untuk check user memiliki token yang valid / tidak
 router.get('/api/v1/user-login', [
-  CheckTokenAuth.isAuthenticated
+  CheckAuthenticated.isAuthenticated
 ], AuthController.whoAmI);
 
 // > Route: Check Profile User dan Edit Profile User
 router.get('/api/v1/user/profile', [
-  CheckTokenAuth.isAuthenticated
+  CheckAuthenticated.isAuthenticated
 ], ProfileController.showProfile);
 router.put('/api/v1/user/profile-edit', [
-  CheckTokenAuth.isAuthenticated
+  CheckAuthenticated.isAuthenticated
 ], ProfileController.editProfile);
 
 // > Route: Room
 // > Route: Generate new room
 router.post('/api/v1/room/create', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
 ], RoomController.createRoom);
 // > Route: Add friend to room
 router.put('/api/v1/room/invite/:room_code', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
 ], RoomController.inviteFriend);
 // > Route: Start Fight
 router.post('/api/v1/room/fight/:room_code', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
 ], RoomController.startFight);
 
@@ -76,21 +76,21 @@ router.post('/api/v1/room/fight/:room_code', [
 // > Admin Route
 // => User
 router.get('/api/v1/user/find', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findAllUser);
 router.get('/api/v1/user/find/:id', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], UserController.findUserById);
 
 // => Room
 router.get('/api/v1/room/find', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], RoomAdminController.getAllRooms);
 router.get('/api/v1/room/find/:room_code', [
-  CheckTokenAuth.isAuthenticated,
+  CheckAuthenticated.isAuthenticated,
   CheckRole.isAdmin
 ], RoomAdminController.getDetailRoom);
 
