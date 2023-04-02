@@ -30,6 +30,7 @@ router.get('/api/v1/hello', (req, res) => {
 
 // > Route: Authtentication
 // => Register
+// # Terdapat 1 middleware untuk check apakah username yang diinputkan sudah terdaftar atau belum
 router.post('/api/v1/register', [
   CheckDuplicate.checkUsername
 ], AuthController.userRegister);
@@ -40,6 +41,7 @@ router.post('/api/v1/register', [
 router.post('/api/v1/login', AuthController.loginWithJWT);
 
 // > Route: Check User Login
+// => Terdapat middleware untuk check user memiliki token yang valid / tidak
 router.get('/api/v1/user-login', [
   CheckTokenAuth.isAuthenticated
 ], AuthController.whoAmI);
