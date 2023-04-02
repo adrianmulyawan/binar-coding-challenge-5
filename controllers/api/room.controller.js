@@ -4,22 +4,28 @@ const RoomFight = models.RoomFight;
 const crypto = require('crypto');
 
 class RoomController {
+  // > Method untuk membuat room pertandingan game suwit jawa
   static createRoom = async (req, res) => {
     try {
+      // > 2 variable ini digunakan untuk generate random number
       const random_num = Math.floor(Math.random() * 100);
       const random_string = crypto.randomBytes(2).toString('hex');
       
+      // > Rangkai 2 variable diatas untuk menjadi room code 
+      // => room code ini akan dicari oleh player 2 untuk bermain game
       const room_code = `binar-${random_string}-${random_num}`;
 
+      // > Buat room permainannya
       const createRoom = await Room.create({
-        room_code: room_code,
-        user_id_1: req.user.id,
-        user_id_2: null,
-        start_fight: null,
-        finish_fight: null,
-        winner_user_id: null
+        room_code: room_code, // diambil dari variable room_code
+        user_id_1: req.user.id, // diambil dari user yang login
+        user_id_2: null, // kita buat null, karena belum ada user dan permainan belum dimulai
+        start_fight: null, // kita buat null, karena belum ada user dan permainan belum dimulai
+        finish_fight: null, // kita buat null, karena belum ada user dan permainan belum dimulai
+        winner_user_id: null // kita buat null, karena belum ada user dan permainan belum dimulai
       });
 
+      // > Beri respon jika room berhasil dibuat
       return res.status(201).json({
         status: 'Success!',
         statusCode: 201,
