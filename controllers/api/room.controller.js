@@ -4,7 +4,7 @@ const RoomFight = models.RoomFight;
 const crypto = require('crypto');
 
 class RoomController {
-  // > Method untuk membuat room pertandingan game suwit jawa
+  // > Method untuk membuat room pertandingan game suwit jepang
   static createRoom = async (req, res) => {
     try {
       // > 2 variable ini digunakan untuk generate random number
@@ -42,15 +42,21 @@ class RoomController {
     }
   };
 
+  // > Method untuk handle proses invite musuh
   static inviteFriend = async (req, res) => {
     try {
+      // > Tangkap dulu params yang dikirimkan
       const room_code = req.params.room_code
+
+      // > Cek apakah terdapat room_code yang ada di db = room code yang dikirimkan sebagai parameter
       const findRoom = await Room.findOne({
         where: {
           room_code
         }
       });
 
+      // > Bila room tidak ditemukan
+      // => return 404
       if (!findRoom) {
         return res.status(404).json({
           status: 'Failed',
@@ -59,10 +65,13 @@ class RoomController {
         });
       }
 
+      // > Room ditemukan
+      // # Update user_id_2 dengan user yang dikirimkan melalui body
       const updateRoom = await findRoom.update({
         user_id_2: req.body.user_id_2
       });
 
+      // > Return 201 (success update)
       return res.status(201).json({
         status: 'Success',
         statusCode: 201,
