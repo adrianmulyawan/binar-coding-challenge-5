@@ -50,6 +50,9 @@ router.get('/api/v1/user-login', [
 router.get('/api/v1/user/profile', [
   CheckAuthenticated.isAuthenticated
 ], ProfileController.showProfile);
+router.get('/api/v1/user/profile/:username', [
+  CheckAuthenticated.isAuthenticated
+], ProfileController.showProfilePlayer);
 router.put('/api/v1/user/profile-edit', [
   CheckAuthenticated.isAuthenticated
 ], ProfileController.editProfile);
