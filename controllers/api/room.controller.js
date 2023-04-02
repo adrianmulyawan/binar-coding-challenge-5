@@ -65,7 +65,7 @@ class RoomController {
         });
       }
 
-      // > Room ditemukan
+      // > Room ditemukan (update table room)
       // # Update user_id_2 dengan user yang dikirimkan melalui body
       const updateRoom = await findRoom.update({
         user_id_2: req.body.user_id_2
