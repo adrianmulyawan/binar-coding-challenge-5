@@ -145,6 +145,7 @@ class AuthController {
     }
   };
 
+  // > Fungsi untuk mengecek user yang login
   static whoAmI = (req, res) => {
     const {id, username, role} = req.user;
     return res.status(200).json({
