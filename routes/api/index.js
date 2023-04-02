@@ -70,6 +70,8 @@ router.put('/api/v1/room/invite/:room_code', [
   CheckRole.isUser
 ], RoomController.inviteFriend);
 // > Route: Start Fight
+// # Di route ini hanya user dengan role = user player yang dapat di invite
+// # Terdapat pengecekan token user
 router.post('/api/v1/room/fight/:room_code', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
