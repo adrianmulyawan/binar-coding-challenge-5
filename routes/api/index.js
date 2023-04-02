@@ -55,12 +55,16 @@ router.put('/api/v1/user/profile-edit', [
 ], ProfileController.editProfile);
 
 // > Route: Room
-// > Route: Generate new room
+// => Route: Generate new room
+// # Di route ini hanya user dengan role = user player yang dapat buat room
+// # Terdapat pengecekan juga harus user yang telah login / token valid yang bisa buat room
 router.post('/api/v1/room/create', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
 ], RoomController.createRoom);
-// > Route: Add friend to room
+// => Route: Add friend to room
+// # Di route ini hanya user dengan role = user player yang dapat di invite
+// # Terdapat pengecekan token user
 router.put('/api/v1/room/invite/:room_code', [
   CheckAuthenticated.isAuthenticated,
   CheckRole.isUser
