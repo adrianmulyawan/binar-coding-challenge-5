@@ -1,5 +1,6 @@
 const models = require('../../models');
 const Profile = models.Profile;
+const User = models.User;
 
 class ProfileController {
   // > Function to Show Profile User Login
@@ -89,6 +90,44 @@ class ProfileController {
         statusCode: 400,
         message: 'Error Found!',
         error: error
+      });
+    }
+  };
+
+  // > Function to Show Detail Other Player
+  static showProfilePlayer = async (req, res) => {
+    try {
+      // > Cari didalam Table User apakah ada username = username (from params)
+      const { username } = req.params;
+      const data = await User.findOne({
+        where: {
+          username: username
+        },
+        include: ['profile']
+      });
+
+      // > Jika data = null (username tidak ditemukan)
+      if (!data) {
+        return res.status(404).json({
+          status: 'Failed',
+          statusCode: 404,
+          message: 'Sorry User is Not Found!'
+        });
+      }
+
+      // > Bila data ditemukan return ini
+      return res.status(200).json({
+        status: 'Success',
+        statusCode: 200,
+        message: 'Profile is Found!',
+        data
+      });
+    } catch (error) {
+      return res.status(400).json({
+        status: 'Failed',
+        statusCode: 400,
+        message: 'Oops Somethind Error!',
+        error
       });
     }
   };
